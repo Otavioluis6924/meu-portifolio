@@ -1,71 +1,49 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Portfólio</title>
+    <title>Sistema de Alunos</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>Meu Portfólio</h1>
+    <div class="container">
 
-        <nav>
-            <a href="#sobre">Sobre mim</a>
-            <a href="#habilidades">Habilidades</a>
-            <a href="#projetos">Projetos</a>
-        </nav>
-    </header>
+        <h1>Cadastro de Alunos</h1>
 
-    <main>
+        <div class="formulario">
+            <input type="text" id="nome" placeholder="Nome do aluno">
+            <input type="number" id="nota" placeholder="Nota (0 a 10)" min="0" max="10" step="0.1">
 
-        <section id="sobre">
-            <h2>Sobre mim</h2>
+            <button onclick="cadastrarAluno()">
+                Cadastrar
+            </button>
+        </div>
 
-            <img src="imagem.jpg" alt="Minha imagem" class="foto">
+        <h2>Lista de Alunos</h2>
 
-            <p>Olá! Meu nome é Otávio e sou estudante de Desenvolvimento de Sistemas.</p>
-            <p>Tenho interesse em programação e tecnologia.</p>
-        </section>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Nota</th>
+                    <th>Situação</th>
+                </tr>
+            </thead>
 
-        <section id="habilidades">
-            <h2>Minhas habilidades</h2>
+            <tbody id="listaAlunos">
+            </tbody>
+        </table>
 
-            <ul>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>JavaScript</li>
-                <li>Java</li>
-                <li>MySQL</li>
-            </ul>
-        </section>
-
-        <section id="projetos">
-            <h2>Meus projetos</h2>
-
-            <div class="projeto">
-                <h3>Sistema de Cadastro de Alunos</h3>
-
-                <p>
-                    Projeto desenvolvido utilizando HTML,
-                    CSS e JavaScript para cadastrar alunos
-                    e calcular resultados.
-                </p>
-
-                <a href="index(3).html" target="_blank">
-                    Acessar projeto
-                </a>
-            </div>
-
-        </section>
-
-        <button onclick="mensagem()">Clique aqui</button>
+        <button onclick="calcularResultados()">
+            Ver Resultados
+        </button>
 
         <p id="resultado"></p>
 
-    </main>
+    </div>
 
     <script src="script.js"></script>
 
