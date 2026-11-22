@@ -1,3 +1,4 @@
+
 // ARRAY: Armazena os alunos cadastrados
 let alunos = [
     { nome: "Ana", nota: 8.5 },
@@ -7,31 +8,34 @@ let alunos = [
 
 
 // FUNÇÃO: Cadastrar um novo aluno
-function cadastrarAluno() 
-{
+function cadastrarAluno() {
+
+    // VARIÁVEIS: Guardam os dados digitados
     let nome = document.getElementById("nome").value;
     let nota = Number(document.getElementById("nota").value);
 
+    console.log("Nome:", nome);
+    console.log("Nota:", nota);
+
     // CONDICIONAL: Verifica os dados
     if (nome === "" || document.getElementById("nota").value === "" ||
-        nota < 0 || nota > 10) 
-        {
+        nota < 0 || nota > 10) {
 
         alert("Preencha corretamente o nome e a nota!");
 
-        } 
-    else 
-        {
+    } else {
 
-        // ARRAY: Adiciona o aluno
-        alunos.push(
-        {
+        // ARRAY: Adiciona um novo aluno
+        alunos.push({
             nome: nome,
             nota: nota
         });
 
         alert("Aluno cadastrado com sucesso!");
 
+        console.log("Aluno cadastrado:", nome);
+
+        // Limpa os campos
         document.getElementById("nome").value = "";
         document.getElementById("nota").value = "";
 
@@ -41,33 +45,28 @@ function cadastrarAluno()
 
 
 // FUNÇÃO: Exibir os alunos na tabela
-function listarAlunos() 
-{
+function listarAlunos() {
 
     let tabela = document.getElementById("listaAlunos");
 
     tabela.innerHTML = "";
 
     // LAÇO DE REPETIÇÃO: Percorre o array
-    for (let i = 0; i < alunos.length; i++) 
-    {
+    for (let i = 0; i < alunos.length; i++) {
 
         let situacao = "";
 
         // CONDICIONAL: Verifica a aprovação
-        if (alunos[i].nota >= 7) 
-            {
+        if (alunos[i].nota >= 7) {
 
             situacao = "Aprovado";
 
-            } 
-        else 
-            {
+        } else {
 
             situacao = "Reprovado";
-            }
+        }
 
-
+        console.log(alunos[i].nome + ": " + situacao);
 
         // Adiciona os dados na tabela
         tabela.innerHTML += `
@@ -80,37 +79,50 @@ function listarAlunos()
             </tr>
         `;
     }
+
+    // Mostra a quantidade de alunos
+    console.log("Total de alunos:", alunos.length);
 }
 
 
 // FUNÇÃO: Calcular os resultados
-function calcularResultados() 
-{
+function calcularResultados() {
 
     let aprovados = 0;
     let reprovados = 0;
+    let soma = 0;
 
     // LAÇO: Percorre todos os alunos
-    for (let i = 0; i < alunos.length; i++) 
-    {
+    for (let i = 0; i < alunos.length; i++) {
+
+        soma = soma + alunos[i].nota;
 
         // CONDICIONAL: Conta os resultados
-        if (alunos[i].nota >= 7) 
-            {
+        if (alunos[i].nota >= 7) {
 
             aprovados++;
 
-            } 
-        else 
-            {
+        } else {
 
             reprovados++;
-            }
+        }
     }
 
-    document.getElementById("resultado").innerHTML = "Aprovados: " + aprovados + " | Reprovados: " + reprovados;
+    // CALCULA A MÉDIA
+    let media = soma / alunos.length;
+
+    console.log("Aprovados:", aprovados);
+    console.log("Reprovados:", reprovados);
+    console.log("Média da turma:", media);
+
+    // Mostra o resultado na página
+    document.getElementById("resultado").innerHTML =
+        "Aprovados: " + aprovados +
+        " | Reprovados: " + reprovados +
+        " | Média: " + media.toFixed(2);
 }
 
 
-// Executa a função ao abrir a página
+// EXECUTA AS FUNÇÕES AO ABRIR A PÁGINA
 listarAlunos();
+calcularResultados();
